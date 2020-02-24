@@ -89,7 +89,7 @@ public class Client {
         return result;
     }
 
-    @OneToMany(mappedBy = "tbClientByClient")
+    @OneToMany(mappedBy = "tbClientByClient", cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<Command> getTbCommandsById() {
         return tbCommandsById;
     }

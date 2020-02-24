@@ -9,15 +9,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<div>
-    <input id="item-id" type="hidden" th:value="${client.id}">
-    <p>First Name : <input id="first-name" type="text" th:field="${client.firstName}"/></p>
-    <p>Last Name : <input id="last-name" type="text" th:field="${client.lastName}"/></p>
-    <p>Tel : <input id="tel" type="text" th:field="${client.tel}"/></p>
-    <p>Email : <input id="mail" type="text" th:field="${client.mail}"/></p>
-    <br/>
-    <button onclick="editClient(this)">Edit</button>
-</div>
+<div class="container">
+    <div id="form-model" class="well form-horizontal">
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend><center><h2><b>Client Form</b></h2></center></legend><br>
+
+            <!-- Text input-->
+            <input id="item-id" type="hidden" th:value="${client.id}">
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="first-name" class="col-md-4 control-label" th:text="Firs_tName"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="first-name" placeholder="First Name" class="form-control" type="text" th:field="${client.firstName}">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="last-name" class="col-md-4 control-label" th:text="Last_Name"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="last-name" placeholder="Last Name" class="form-control" type="text" th:field="${client.lastName}">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="tel" class="col-md-4 control-label" th:text="Tel"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="tel" placeholder="Telephone" class="form-control" type="text" th:field="${client.tel}">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="mail" class="col-md-4 control-label" th:text="Mail"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="mail" placeholder="Mail" class="form-control" type="text" th:field="${client.mail}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="editClient(this)" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div><!-- /.container -->
 <script>
     function editClient(e) {
 

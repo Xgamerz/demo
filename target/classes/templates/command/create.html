@@ -9,17 +9,74 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<form th:action="@{/confirmCommand}" th:object="${command}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <p>Number : <input type="text" th:field="*{number}"/></p>
-    <p>Client : <input type="text" th:field="*{tbClientByClient.id}"/></p>
-    <p>Description : <input type="text" th:field="*{description}"/></p>
-    <p>Type : <input type="text" th:field="*{type}"/></p>
-    <p>
-        <input type="submit" class="btn btn-primary" th:value="#{button.submit}">
-        <button class="btn btn-primary" th:text="#{button.cancel}"></button>
-    </p>
-</form>
+<div class="container">
+    <form id="form-model" class="well form-horizontal" th:action="@{/confirmCommand}" th:object="${command}" method="post">
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend><center><h2><b>Command Form</b></h2></center></legend><br>
+
+            <!-- Text input-->
+            <input type="hidden" th:field="*{id}">
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="number" class="col-md-4 control-label" th:text="Number"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="number" name="number" placeholder="Number" class="form-control"  type="text" th:field="*{number}">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="tbClientByClient" class="col-md-4 control-label" th:text="Client"></label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select id="tbClientByClient" name="department" class="form-control selectpicker" th:field="*{tbClientByClient}">
+                            <option th:each="client : ${clients}"
+                                    th:value="${client.id}"
+                                    th:text="${client.firstName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="description" class="col-md-4 control-label" th:text="Description"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="description" name="number" placeholder="Description" class="form-control" type="text" th:field="*{description}">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="type" class="col-md-4 control-label" th:text="Type"></label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select id="type" name="type" class="form-control selectpicker" th:field="*{type}">
+                            <option  th:each="cmdType : ${T(com.example.demo.models.CommandType).values()}"
+                                     th:value="${cmdType}" th:text="${cmdType.displayValue}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div><!-- /.container -->
 
 </body>
 </html>

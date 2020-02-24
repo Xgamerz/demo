@@ -9,14 +9,65 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<div>
-    <p>First Name : <input id="first-name" type="text" /></p>
-    <p>Last Name : <input id="last-name" type="text" /></p>
-    <p>Tel : <input id="tel" type="text" /></p>
-    <p>Email : <input id="mail" type="text" /></p>
-    <br/>
-    <button onclick="createClient(this)">Add</button>
-</div>
+<div class="container">
+    <div id="form-model" class="well form-horizontal">
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend><center><h2><b>Client Form</b></h2></center></legend><br>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="first-name" class="col-md-4 control-label" th:text="FirstName"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="first-name" placeholder="First Name" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="last-name" class="col-md-4 control-label" th:text="LastName"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="last-name" placeholder="Last Name" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="tel" class="col-md-4 control-label" th:text="Tel"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="tel" placeholder="Telephone" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="mail" class="col-md-4 control-label" th:text="Mail"></label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="mail" placeholder="Mail" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="createClient(this)" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div><!-- /.container -->
+
 <script>
     function createClient(e) {
 

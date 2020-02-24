@@ -15,20 +15,39 @@ public class ClientController {
 
     @GetMapping("/listClients")
     public String clients(Model model) {
-        Object items = clientService.getAll();
-        model.addAttribute("clients", items);
+        try {
+            Object items = clientService.getAll();
+            model.addAttribute("clients", items);
+        } catch (Exception ex) {
+            //model.addAttribute("exception", ex);
+            //return "error"; //view
+            new RuntimeException("listClients exception");
+        }
         return "client/list"; //view
     }
 
     @GetMapping("/editClient")
     public String edit(@RequestParam(name = "id", required = true, defaultValue = "") String id, Model model) {
-        Object item = clientService.getById(id);
-        model.addAttribute("client", item);
+        try {
+            Object item = clientService.getById(id);
+            model.addAttribute("client", item);
+        } catch (Exception ex) {
+            //model.addAttribute("exception", ex);
+            //return "error"; //view
+            new RuntimeException("editClient exception");
+        }
         return "client/edit"; //view
     }
 
     @GetMapping("/createClient")
     public String create(Model model) {
+        try {
+            //todo
+        } catch (Exception ex) {
+            //model.addAttribute("exception", ex);
+            //return "error"; //view
+            new RuntimeException("createClient exception");
+        }
         return "client/create"; //view
     }
 }

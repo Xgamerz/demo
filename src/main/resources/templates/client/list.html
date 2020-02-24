@@ -11,28 +11,35 @@
 
 </head>
 <body>
-<h1>Clients</h1>
+<div class="container">
+    <div class="well form-horizontal">
+        <fieldset>
+            <legend><center><h2><b>Clients List</b></h2></center></legend><br>
 
-<a th:href="createClient">Create</a>
-<table border="1">
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Tel</th>
-        <th>Mail</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each = "item: ${clients}">
-        <td th:utext="${item.firstName}"></td>
-        <td th:utext="${item.lastName}"></td>
-        <td th:utext="${item.tel}"></td>
-        <td th:utext="${item.mail}"></td>
-        <td th:id="${item.id}">
-            <a th:href="@{editClient?id={id}(id=${item.id})}">Edit</a>
-            <a href="#" onclick="deleteClient(this)">Delete</a>
-        </td>
-    </tr>
-</table>
+            <a th:href="createClient">Create</a>
+            <table border="1" class="table table-striped table-responsive-md">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Tel</th>
+                    <th>Mail</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each = "item: ${clients}">
+                    <td th:utext="${item.firstName}"></td>
+                    <td th:utext="${item.lastName}"></td>
+                    <td th:utext="${item.tel}"></td>
+                    <td th:utext="${item.mail}"></td>
+                    <td th:id="${item.id}">
+                        <a class="btn btn-primary" th:href="@{editClient?id={id}(id=${item.id})}">Edit</a>
+                        <a class="btn btn-primary" href="#" onclick="deleteClient(this)">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</div><!-- /.container -->
+
 <script>
     function deleteClient(e) {
         var row = $(e).parent();
