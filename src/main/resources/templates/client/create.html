@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Client</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <p>First Name : <input id="first-name" type="text" /></p>
+    <p>Last Name : <input id="last-name" type="text" /></p>
+    <p>Tel : <input id="tel" type="text" /></p>
+    <p>Email : <input id="mail" type="text" /></p>
+    <br/>
+    <button onclick="createClient(this)">Add</button>
+</div>
+<script>
+    function createClient(e) {
+
+        var item = new Object();
+        item.firstName = $("#first-name").val();
+        item.lastName = $("#last-name").val();
+        item.tel = $("#tel").val();
+        item.mail = $("#mail").val();
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        var apiUrl = 'http://localhost:8080/postClient';
+        fetch(apiUrl, options).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            console.log("Json: ", data);
+            //console.log("String: ", JSON.stringify(data));
+        }).catch(err => {
+            // Do something for an error here
+        });
+    }
+</script>
+</body>
+</html>

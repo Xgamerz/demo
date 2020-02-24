@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Client Form</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Clients</h1>
+
+<a th:href="createClient">Create</a>
+<table border="1">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Tel</th>
+        <th>Mail</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each = "item: ${clients}">
+        <td th:utext="${item.firstName}"></td>
+        <td th:utext="${item.lastName}"></td>
+        <td th:utext="${item.tel}"></td>
+        <td th:utext="${item.mail}"></td>
+        <td th:id="${item.id}">
+            <a th:href="@{editClient?id={id}(id=${item.id})}">Edit</a>
+            <a href="#" onclick="deleteClient(this)">Delete</a>
+        </td>
+    </tr>
+</table>
+<script>
+    function deleteClient(e) {
+        var row = $(e).parent();
+        var id = row.attr('id');
+        const options = {
+            method: 'DELETE'
+            /*body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }*/
+        }
+        var apiUrl = 'http://localhost:8080/deleteClient?id=' + id;
+        fetch(apiUrl, options).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            console.log("Json: ", data);
+
+            if (data == true) {
+                row.parent().remove();
+            }
+            //console.log("String: ", JSON.stringify(data));
+        }).catch(err => {
+            // Do something for an error here
+        });
+    }
+</script>
+</body>
+</html>

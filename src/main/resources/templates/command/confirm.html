@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Command</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div th:object="${command}">
+    <p>Number : <input type="text" th:field="*{number}"/></p>
+    <p>Client : <input type="text" th:field="*{client.id}"/></p>
+    <p>Tel : <input type="text" th:field="*{description}"/></p>
+    <p>Email : <input type="text" th:field="*{type}"/></p>
+</div>
+</body>
+</html>

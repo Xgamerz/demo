@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Client</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <input id="item-id" type="hidden" th:value="${client.id}">
+    <p>First Name : <input id="first-name" type="text" th:field="${client.firstName}"/></p>
+    <p>Last Name : <input id="last-name" type="text" th:field="${client.lastName}"/></p>
+    <p>Tel : <input id="tel" type="text" th:field="${client.tel}"/></p>
+    <p>Email : <input id="mail" type="text" th:field="${client.mail}"/></p>
+    <br/>
+    <button onclick="editClient(this)">Edit</button>
+</div>
+<script>
+    function editClient(e) {
+
+        var item = new Object();
+
+        item.id = $("#item-id").val();
+        item.firstName = $("#first-name").val();
+        item.lastName = $("#last-name").val();
+        item.tel = $("#tel").val();
+        item.mail = $("#mail").val();
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        var apiUrl = 'http://localhost:8080/putClient';
+        fetch(apiUrl, options).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            console.log("Json: ", data);
+            //console.log("String: ", JSON.stringify(data));
+        }).catch(err => {
+            // Do something for an error here
+        });
+    }
+</script>
+</body>
+</html>

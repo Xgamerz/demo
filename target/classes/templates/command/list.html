@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Command Form</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Commands</h1>
+
+<a th:href="createCommand">Create</a>
+<table border="1">
+    <tr>
+        <th>Number</th>
+        <th>Client</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each = "item: ${commands}">
+        <td th:utext="${item.number}"></td>
+        <td th:utext="${item.tbClientByClient.id}"></td>
+        <td th:utext="${item.description}"></td>
+        <td th:utext="${item.type}"></td>
+        <td th:id="${item.id}">
+            <a th:href="@{editCommand?id={id}(id=${item.id})}">Edit</a>
+            <a href="#" onclick="deleteCommand(this)">Delete</a>
+        </td>
+    </tr>
+</table>
+<script>
+    function deleteCommand(e) {
+        var row = $(e).parent();
+        var id = row.attr('id');
+        const options = {
+            method: 'DELETE'
+            /*body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }*/
+        }
+        var apiUrl = 'http://localhost:8080/deleteCommand?id=' + id;
+        fetch(apiUrl, options).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            console.log("Json: ", data);
+
+            if (data == true) {
+                row.parent().remove();
+            }
+            //console.log("String: ", JSON.stringify(data));
+        }).catch(err => {
+            // Do something for an error here
+        });
+    }
+</script>
+</body>
+</html>
