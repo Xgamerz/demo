@@ -11,7 +11,7 @@ public class Client {
     private String lastName;
     private String mail;
     private String tel;
-    private Collection<Command> tbCommandsById;
+    //private Collection<Command> tbCommandsById;
 
     @Id
     @Column(name = "id", nullable = false, length = 255)
@@ -88,7 +88,7 @@ public class Client {
         result = 31 * result + (tel != null ? tel.hashCode() : 0);
         return result;
     }
-
+/*
     @OneToMany(mappedBy = "tbClientByClient", cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<Command> getTbCommandsById() {
         return tbCommandsById;
@@ -97,4 +97,6 @@ public class Client {
     public void setTbCommandsById(Collection<Command> tbCommandsById) {
         this.tbCommandsById = tbCommandsById;
     }
+
+ */
 }

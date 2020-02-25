@@ -22,6 +22,7 @@ public class ClientServiceImp implements ClientService {
 
     @Override
     public void save(Client item) {
+
         clientRepository.save(item);
     }
 
@@ -33,6 +34,7 @@ public class ClientServiceImp implements ClientService {
     @Override
     //@Transactional
     public void deleteById(String id) {
+
         clientRepository.deleteById(id);
     }
 

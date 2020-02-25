@@ -22,16 +22,19 @@ public class CommandServiceImp implements CommandService {
 
     @Override
     public void save(Command item) {
+
         commandRepository.save(item);
     }
 
     @Override
     public void delete(Command item) {
+
         commandRepository.delete(item);
     }
 
     @Override
     public void deleteById(String id) {
+
         commandRepository.deleteById(id);
     }
 

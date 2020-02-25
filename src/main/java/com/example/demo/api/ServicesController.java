@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+Rest api to be used on other platformes (moblie desktop ...)
+ */
 @RestController
 public class ServicesController {
 
@@ -21,49 +24,61 @@ public class ServicesController {
     @Autowired
     private CommandService commandService;
 
+    /*
+    call service who delete clients
+    @param id to define client who will be deleted
+     */
     @DeleteMapping("/deleteClient")
     public boolean deleteClient(@RequestParam(value = "id", defaultValue = "") String id) {
         clientService.deleteById(id);
         return true;
     }
 
+    /*
+    call service who delete commands
+    @param id to define client who will be deleted
+     */
     @DeleteMapping("/deleteCommand")
     public boolean deleteCommand(@RequestParam(value = "id", defaultValue = "") String id) {
         commandService.deleteById(id);
         return true;
     }
 
-    @GetMapping("/getClient")
-    public Client getClient(@RequestParam(value = "name", defaultValue = "World") String name) {
-        //Optional<Client> item;
-        Client item = clientService.getById("test");
-        //item = Optional.of(new Client());
-        //Client client = item.get();
-        item.setFirstName(name);
-        return item;
-    }
-
+    /*
+    call service who get all clients
+     */
     @GetMapping("/getClients")
     public Collection<Client> getClients() {
         return clientService.getAll();
     }
 
+    /*
+    call service who get all commands
+     */
     @GetMapping("/getCommands")
     public Collection<Command> getCommands() {
         return commandService.getAll();
     }
 
+    /*
+    call service who edit clients
+    @param item is client to be saved
+     */
     @PutMapping("/putClient")
     @ResponseBody
-    public Client putClient(@RequestBody Client item) {
+    public Client editClient(@RequestBody Client item) {
         clientService.save(item);
         return item;
     }
 
+    /*
+    call service who add clients
+    @param item is client to be added
+     */
     @PostMapping("/postClient")
     @ResponseBody
-    public Client postClient(@RequestBody Client item) {
-        item.setId(UUID.randomUUID().toString());
+    public Client addClient(@RequestBody Client item) {
+        item.setId(UUID.randomUUID().toString()); //init new id of item before add to database
         clientService.save(item);
         return item;
     }

@@ -32,7 +32,7 @@
                     <td th:utext="${item.type}"></td>
                     <td th:id="${item.id}">
                         <a class="btn btn-primary" th:href="@{editCommand?id={id}(id=${item.id})}">Edit</a>
-                        <a class="btn btn-primary" href="#" onclick="deleteCommand(this)">Delete</a>
+                        <a th:id="${item.id}" class="btn btn-primary" href="#" onclick="deleteCommand(this)">Delete</a>
                     </td>
                 </tr>
             </table>
@@ -42,14 +42,10 @@
 
 <script>
     function deleteCommand(e) {
-        var row = $(e).parent();
+        var row = $(e);
         var id = row.attr('id');
         const options = {
             method: 'DELETE'
-            /*body: JSON.stringify(item),
-            headers: {
-                'Content-Type': 'application/json'
-            }*/
         }
         var apiUrl = 'http://localhost:8080/deleteCommand?id=' + id;
         fetch(apiUrl, options).then(response => {
@@ -59,7 +55,7 @@
             console.log("Json: ", data);
 
             if (data == true) {
-                row.parent().remove();
+                row.closest("tr").remove();
             }
             //console.log("String: ", JSON.stringify(data));
         }).catch(err => {

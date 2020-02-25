@@ -13,3 +13,9 @@ h1{
 h2{
     color:#FF0000;
 }
+
+#btnOK,
+#btnNOK{
+    display: inline-block;
+    vertical-align: top;
+}
