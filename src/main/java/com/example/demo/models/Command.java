@@ -67,6 +67,7 @@ public class Command {
         return true;
     }
 
+
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;

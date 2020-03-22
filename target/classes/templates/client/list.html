@@ -48,7 +48,7 @@
         const options = {
             method: 'DELETE'
         }
-        var apiUrl = 'http://localhost:8080/deleteClient?id=' + id;
+        var apiUrl = 'http://localhost:8080/api/services/deleteClient?id=' + id;
         fetch(apiUrl, options).then(response => {
             return response.json();
         }).then(data => {
